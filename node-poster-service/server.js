@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const winston = require('winston');
 const fabric = require('fabric/node');
+const { registerFont } = require('canvas');
 const fs = require('fs');
 const path = require('path');
 const ModernFabricRenderer = require('./modernFabricRenderer');
@@ -50,8 +51,8 @@ function registerFonts() {
       const familyName = path.basename(file, path.extname(file));
       
       try {
-        // 使用fabric的API来注册字体
-        fabric.nodeCanvas.registerFont(fontPath, { family: familyName });
+        // 使用canvas包的API来注册字体
+        registerFont(fontPath, { family: familyName });
         logger.info(`✅ Successfully registered font: '${familyName}' from ${file}`);
       } catch (err) {
         logger.error(`❌ Failed to register font: ${file}`, err);
@@ -119,7 +120,7 @@ app.post('/render', async (req, res) => {
     });
     
     // 渲染图片 - 使用现代Fabric.js方案
-    const renderer = new ModernFabricRenderer();
+    const renderer = new ModernFabricRenderer(fabric);
     const buffer = await renderer.render(template, data);
     
     const renderTime = Date.now() - startTime;

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(npm rebuild:*)",
+      "Bash(nvm use:*)",
+      "Bash(rm:*)",
+      "Bash(npm install)",
+      "Bash(timeout:*)",
+      "Bash(gtimeout:*)",
+      "Bash(npm install:*)",
+      "Bash(docker stop:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(docker logs:*)"
+    ],
+    "deny": []
+  }
+}

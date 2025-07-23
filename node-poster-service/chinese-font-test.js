@@ -13,18 +13,20 @@ const template = {
   width: 1080,
   height: 1920,
   objects: [
-// 背景图片 - 使用Unsplash开源图片
+// 纯色背景替代网络图片
 {
- type: "image",
- src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=1920&fit=crop&crop=center",
+ type: "rect",
  left: 0,
  top: 0,
  width: 1080,
  height: 1920,
- scaleX: 1,
- scaleY: 1,
- custom: {
-   placeholder: "background_image"
+ fill: {
+   type: "linear",
+   coords: { x1: 0, y1: 0, x2: 0, y2: 1920 },
+   colorStops: [
+     { offset: 0, color: "#667eea" },
+     { offset: 1, color: "#764ba2" }
+   ]
  }
 },
 

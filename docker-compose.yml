@@ -1,14 +1,19 @@
+# docker-compose.yml (最终决战版)
 services:
   poster_renderer:
-    # build: ./node-poster-service  <-- 注释掉或删除这行
-    image: 18369957603/canvas_posterrender:latest # <-- 换成这行
+    image: 18369957603/canvas_posterrender:latest
     container_name: poster_renderer_dev
     ports:
       - "3001:3000"
     volumes:
+      # 1. 将本地代码同步到容器，除了node_modules目录
       - ./node-poster-service:/usr/src/app
+      # 2. 为容器内的node_modules目录启用一个"保护罩"（命名数据卷）
+      #    这可以防止本地的node_modules覆盖容器内的
       - canvas_node_modules:/usr/src/app/node_modules
-      - /Users/zhangyifei/Desktop/ep_Front/poster_render/canvas_posterRender/node-poster-service/fonts:/usr/src/app/fonts
+      # 3. 挂载字体目录
+      - ./node-poster-service/fonts:/usr/src/app/fonts
 
+# 定义我们上面用到的那个"保护罩"
 volumes:
   canvas_node_modules:
