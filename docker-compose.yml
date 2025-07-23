@@ -1,0 +1,14 @@
+services:
+  poster_renderer:
+    # build: ./node-poster-service  <-- 注释掉或删除这行
+    image: 18369957603/canvas_posterrender:latest # <-- 换成这行
+    container_name: poster_renderer_dev
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./node-poster-service:/usr/src/app
+      - canvas_node_modules:/usr/src/app/node_modules
+      - /Users/zhangyifei/Desktop/ep_Front/poster_render/canvas_posterRender/node-poster-service/fonts:/usr/src/app/fonts
+
+volumes:
+  canvas_node_modules:
