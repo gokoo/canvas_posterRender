@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: . # 使用根目录作为构建上下文
-          dockerfile: ./node-poster-service/Dockerfile # 明确指定Dockerfile的位置
+          file: ./node-poster-service/Dockerfile # 明确指定Dockerfile的位置
           push: true # 确认要推送到仓库
           # 为镜像打上标签，请将'zhangyifei6.1'替换为您的Docker Hub用户名
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/canvas_posterrender:latest
